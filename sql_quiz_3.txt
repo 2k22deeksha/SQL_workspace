@@ -1,0 +1,37 @@
+SQL Sheet 3
+
+IN Count:  condition inside it doesn't matter
+
+select => from => where => order by
+
+SELECT *
+FROM employees e
+WHERE e.salary>
+
+
+SELECT employee_id,first_name,last_name,department_id,salary
+FROM employees e
+WHERE e.salary<AVG(e.salary)
+ORDER BY employee_id ASC
+
+
+SELECT CONCAT(first_name," ",last_name)as first_name
+ORDER BY full_name ASC
+
+
+SELECT department_id,department_name,Average_salary
+FROM employees e
+WHERE e.salary<AVG(e.salary)
+ORDER BY department_id ASC
+
+
+SELECT candidate_id
+FROM candidates c
+WHERE c.skill='Python' AND c.skill= 'Tableau' AND c.skill='MySQL'
+ORDER BY candidate_id ASC
+
+
+SELECT *
+FROM departments d
+WHERE e.salary<AVG(e.salary)
+ORDER BY department_id ASC

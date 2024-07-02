@@ -1,0 +1,33 @@
+SQL Sheet 1
+
+ -  mn=n=select => from => where => order by
+
+SELECT employee_id, first_name, last_name, salary,
+CASE WHEN job_id IN ('AC_ACCOUNT', 'FI_ACCOUNT') THEN 1 ELSE 0 END AS Accountant
+from employees
+ORDER BY employee_id ASC
+
+SELECT employee_id,first_name,last_name,job_id
+FROM employees
+JOIN departments d ON e.department_id = d.department_id 
+WHERE departments IN Seattle
+ORDER BY employee_id ASC
+
+select employee_id, first_name, last_name, job_id
+from employees e where department_id IN (
+select department_id from departments where location_id IN(
+select location_id from locations where city IN ('Seattle')
+))
+ORDER BY employee_id ASC
+
+
+SELECT employee_id,salary,Salary_bin,
+CASE 
+    WHEN salary>20000 THEN 'Class A'
+	WHEN salary>=10000 and salary<=20000 THEN 'Class B'
+	WHEN salary<10000 THEN 'Class C'
+	ELSE salary
+FROM employees
+ORDER BY employee_id ASC
+
+

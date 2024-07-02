@@ -1,0 +1,72 @@
+SQL Sheet 2
+
+select => from => where => order by
+
+
+SELECT original_title
+FROM movies
+WHERE release_year>2014 and vote_average>7
+ORDER BY original_title ASC;
+
+
+SELECT original_title,director,genres,cast,budget,revenue,runtime, vote_average
+FROM movies
+WHERE keywords like '%sport%' or keywords like '%sequel%' or keywords like '%suspense%'i9
+ORDER BY original_title ASC;
+
+
+SELECT e.employee_id, e.first_name, e.last_name
+FROM employees e
+JOIN employees e1 ON e.manager_id = e1.employee_id
+JOIN departments m ON e1.department_id = m.department_id
+JOIN locations l ON m.location_id = l.location_id
+WHERE l.country_id = 'US'
+ORDER BY e.employee_id ASC;
+
+
+SELECT CONCAT(first_name," ",last_name) as full_name,salary,department_id,job_id
+FROM employees
+where job_id IN (select job_id from employees where employee_id = 107)
+ORDER BY full_name ASC;
+
+
+SELECT original_title,popularity
+FROM movies m
+WHERE m.genres IN('Horror')
+ORDER BY popularity DESC;
+
+
+select department_id, department_name
+FROM departments
+where department_id not IN (select department_id from employees)
+ORDER by department_id ASC;
+
+
+SELECT DISTINCT e.employee_id,e.first_name,e.last_name 
+FROM employees e
+INNER JOIN employees m
+ON e.manager_id = m.employee_id
+AND e.hire_date < m.hire_date
+ORDER by employee_id ASC;
+
+
+select * 
+FROM employees
+where employee_id not IN (select employee_id from job_history)
+order by employee_id ASC
+
+
+SELECT employee_id,CONCAT(first_name," ",last_name) as full_name,salary
+FROM employees
+WHERE department_id IN (select department_id from departments
+WHERE department_name IN('Administration','Marketing','Human Resources')) 
+order by employee_id ASC
+
+OR
+
+
+SELECT employee_id, concat(first_name," ", last_name) as full_name, salary
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id 
+where d.department_name IN ('Administration', 'Marketing', 'Human Resources')
+order by employee_id ASC
